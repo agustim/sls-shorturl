@@ -42,57 +42,44 @@ serverless offline start
 
 You can create, retrieve, update, or delete todos with the following commands:
 
-### Create a Todo
+### Create a ShortURL
 
 ```bash
-curl -X POST -H "Content-Type:application/json" http://localhost:3000/todos --data '{ "text": "Learn Serverless" }'
+curl -X POST -H "Content-Type:application/json" -H "X-Api-Key:test" http://localhost:3000/shorturl --data '{ "u": "https://www.google.com" }'
 ```
 
 Example Result:
 ```bash
-{"text":"Learn Serverless","id":"ee6490d0-aa11e6-9ede-afdfa051af86","createdAt":1479138570824,"checked":false,"updatedAt":1479138570824}%
+{"statusCode":200,"body":"[{"checked":false,"createdAt":1583237525308,"id":"ZSUcpm","url":"https://google.com","updatedAt":1583237525308}]"}
 ```
 
-### List all Todos
+### List all ShortURL
 
 ```bash
-curl -H "Content-Type:application/json" http://localhost:3000/todos
+curl -H "Content-Type:application/json" -H "X-Api-Key:test" http://localhost:3000/shorturl
 ```
 
 Example output:
 ```bash
-[{"text":"Deploy my first service","id":"ac90feaa11e6-9ede-afdfa051af86","checked":true,"updatedAt":1479139961304},{"text":"Learn Serverless","id":"206793aa11e6-9ede-afdfa051af86","createdAt":1479139943241,"checked":false,"updatedAt":1479139943241}]%
+[{"checked":false,"createdAt":1583238016091,"id":"1qaPIA","url":"https://yahoo.com","updatedAt":1583238016091},{"checked":false,"createdAt":1583237994751,"id":"ZSUcpm","url":"https://google.com","updatedAt":1583237994751},{"checked":false,"createdAt":1583237985861,"id":"2aEU22","url":"https://reddit.com","updatedAt":1583237985861},{"checked":false,"createdAt":1583238056236,"id":"1vABqH","url":"http://ceeuropa.cat","updatedAt":1583238056236}]
 ```
 
-### Get one Todo
+### Get one ShortURL
 
 ```bash
-# Replace the <id> part with a real id from your todos table
-curl -H "Content-Type:application/json" http://localhost:3000/todos/<id>
+# Replace the <id> part with a real id from your shorturl table
+curl -H "Content-Type:application/json" http://localhost:3000/shorturl/<id>
 ```
 
 Example Result:
-```bash
-{"text":"Learn Serverless","id":"ee6490d0-aa11e6-9ede-afdfa051af86","createdAt":1479138570824,"checked":false,"updatedAt":1479138570824}%
-```
 
-### Update a Todo
-
-```bash
-# Replace the <id> part with a real id from your todos table
-curl -X PUT -H "Content-Type:application/json" http://localhost:3000/todos/<id> --data '{ "text": "Learn Serverless", "checked": true }'
-```
-
-Example Result:
-```bash
-{"text":"Learn Serverless","id":"ee6490d0-aa11e6-9ede-afdfa051af86","createdAt":1479138570824,"checked":true,"updatedAt":1479138570824}%
-```
+Return Redirect
 
 ### Delete a Todo
 
 ```bash
-# Replace the <id> part with a real id from your todos table
-curl -X DELETE -H "Content-Type:application/json" http://localhost:3000/todos/<id>
+# Replace the <id> part with a real id from your shorturl table
+curl -X DELETE -H "Content-Type:application/json" -H "X-Api-Key:test" http://localhost:3000/shorturl/<id>
 ```
 
 No output

@@ -6,20 +6,17 @@ const dynamodb = require('./dynamodb');
 const sh = require("shorthash");
 const normalizeUrl = require('normalize-url');
 
-
+const middleware = require('./middleware')
 
 module.exports.create = (event, context, callback) => {
   const timestamp = new Date().getTime();
-  var XApiKey = ""
-  for(const prop in event.headers) {
-    if (prop.toLocaleLowerCase() == 'x-api-key') {
-      XApiKey = event.headers[prop]
-    }
-  }
+
+  if (!middleware.security(event,callback)) 
+    return;
 
   const data = JSON.parse(event.body);
 
-  if ((typeof data.u !== 'string') || (XApiKey != process.env.ADMIN_KEY)) {
+  if (typeof data.u !== 'string') {
     console.error('Validation Failed');
     callback(null, {
       statusCode: 400,

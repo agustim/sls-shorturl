@@ -25,7 +25,7 @@ module.exports.get = (event, context, callback) => {
     const item = result.Item
     if ((!item) || (!item.url)) {
       callback(null, {
-        statusCode: 200,
+        statusCode: 404,
         headers: { 'Content-Type': 'text/plain' },
         body: 'This url is not exist.',
       });

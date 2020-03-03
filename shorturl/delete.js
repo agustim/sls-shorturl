@@ -1,8 +1,13 @@
 'use strict';
 
 const dynamodb = require('./dynamodb');
+const middleware = require('./middleware');
 
 module.exports.delete = (event, context, callback) => {
+
+  if (!middleware.security(event,callback)) 
+    return;
+
   const params = {
     TableName: process.env.DYNAMODB_TABLE,
     Key: {
