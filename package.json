@@ -6,7 +6,7 @@
   "author": "Christoph Gysin <christoph.gysin@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "normalize-url": "^4.5.0",
+    "normalize-url": "^4.5.1",
     "shorthash": "0.0.2",
     "uuid": "^2.0.3"
   },
